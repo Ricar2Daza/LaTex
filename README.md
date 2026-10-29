@@ -85,6 +85,7 @@ Todas las rutas aceptan `POST` con JSON:
 ```
 
 `template` es opcional (`simple`, `report`, `cv`); solo se usa para envolver fragmentos.
+`files` es opcional: lista de `{ "name": "...", "content": "<base64>" }` con archivos auxiliares (imágenes, `.bib`, `.sty`…) que se escriben en el directorio de compilación.
 
 ### Compilar y previsualizar
 
@@ -219,7 +220,7 @@ Orden de resolución de binarios: **variable de entorno → `.tools/bin` → `PA
 
 ## Limitaciones conocidas
 
-- No hay subida de imágenes ni de archivos `.bib`; los documentos deben ser autocontenidos.
+- Los archivos adjuntos (imágenes, `.bib`, `.sty`…) se suben desde el botón **Archivos** del editor y se compilan junto con `main.tex`. Se referencian por su nombre (p. ej. `\\includegraphics{logo.png}` o `\\bibliography{refs}`). Los adjuntos viven en memoria durante la sesión y se pierden al recargar la página.
 - En DOCX, las referencias cruzadas como `\eqref{...}` se convierten en el texto de la etiqueta, no en campos actualizables de Word.
 - La caché vive en memoria del proceso: se pierde al reiniciar el servidor.
 - La compilación requiere los binarios nativos; en entornos serverless (Vercel, etc.) hay que aportarlos o usar un contenedor propio.
@@ -240,3 +241,4 @@ Comprueba que el interruptor **Auto** esté activo o pulsa **Compilar**.
 
 **Error de red al descargar los binarios**
 `setup-tools.mjs` admite `--force` para reintentar; también puedes descargar Tectonic y Pandoc manualmente y colocarlos en `.tools/bin`.
+"# LaTex" 
